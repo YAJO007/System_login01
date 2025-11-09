@@ -1,0 +1,86 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background: #111827;
+  padding: 24px 28px;
+  border-radius: 18px;
+  width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(59, 130, 246, 0.25);
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #93c5fd;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0 14px;
+  border-radius: 10px;
+  border: none;
+  background: #1f2937;
+  color: #e5e7eb;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border: 1px solid #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #3b82f6;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+.link {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.link a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+.link a:hover {
+  color: #93c5fd;
+}
+
+.msg {
+  margin-bottom: 8px;
+  font-size: 14px;
+  min-height: 18px;
+  text-align: center;
+}

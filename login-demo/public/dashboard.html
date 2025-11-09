@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body { font-family:sans-serif; background:#020817; color:#e5e7eb; display:flex; justify-content:center; align-items:center; height:100vh; }
+    .card { background:#020817; padding:24px 28px; border-radius:18px; width:360px; box-shadow:0 8px 25px rgba(15,23,42,.9); border:1px solid #111827; text-align:center; }
+    button { margin-top:16px; padding:8px 16px; border:none; border-radius:10px; cursor:pointer; background:#ef4444; color:white; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Dashboard</h2>
+    <p id="welcome">กำลังโหลด...</p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    async function loadMe() {
+      const res = await fetch('/api/me');
+      const data = await res.json();
+      const el = document.getElementById('welcome');
+      if (data.ok && data.user) {
+        el.textContent = 'สวัสดี ' + data.user.username + ' ✅ คุณล็อกอินอยู่';
+      } else {
+        window.location.href = 'login.html';
+      }
+    }
+
+    async function logout() {
+      await fetch('/api/logout', { method: 'POST' });
+      window.location.href = 'login.html';
+    }
+
+    loadMe();
+  </script>
+</body>
+</html>
