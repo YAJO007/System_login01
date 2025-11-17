@@ -1,39 +1,187 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard</title>
-  <style>
-    body { font-family:sans-serif; background:#020817; color:#e5e7eb; display:flex; justify-content:center; align-items:center; height:100vh; }
-    .card { background:#020817; padding:24px 28px; border-radius:18px; width:360px; box-shadow:0 8px 25px rgba(15,23,42,.9); border:1px solid #111827; text-align:center; }
-    button { margin-top:16px; padding:8px 16px; border:none; border-radius:10px; cursor:pointer; background:#ef4444; color:white; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ขายรหัสเกม | GameCode Shop</title>
+  <link rel="stylesheet" href="dashboard.css">
 </head>
+
 <body>
-  <div class="card">
-    <h2>Dashboard</h2>
-    <p id="welcome">กำลังโหลด...</p>
-    <button onclick="logout()">Logout</button>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-icon">GC</div>
+        GameCode Shop
+      </div>
+      <nav class="nav-links">
+        <button class="btn-primary" onclick="window.location.href='password.html'">
+          ซื้อขายรหัสเกม
+        </button>
+        <a href="#howto">วิธีสั่งซื้อ</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-outline">เช็คสถานะออเดอร์</button>
+        <button class="btn-primary">แชทสั่งซื้อ</button>
+        <button class="btn-logout" onclick="window.location.href='login.html'">
+          ออกจากระบบ</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-main">
+          <div class="hero-badge">
+            รหัสเกมแท้ 100%
+            <span>พร้อมส่งอัตโนมัติ</span>
+          </div>
+          <h1 class="hero-title">
+            ร้านขาย<span>รหัสเกม / โค้ดเติมเกม</span> ราคานักศึกษา
+          </h1>
+          <p class="hero-subtitle">
+            เลือกซื้อรหัสเกม Steam / Epic / Xbox / PlayStation หรือโค้ดเติมเกมออนไลน์
+            ส่งโค้ดให้ทันทีหลังยืนยันการชำระเงิน (ตามเงื่อนไขร้าน)
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary">ดูรหัสเกมยอดนิยม</button>
+            <button class="btn-outline">ดูวิธีสั่งซื้อ</button>
+          </div>
+          <div class="hero-meta">
+            <span><span class="dot"></span>ออนไลน์อยู่</span>
+            <span>ส่งโค้ดเฉลี่ยภายใน 5-15 นาที</span>
+            <span>รองรับโอน/พร้อมเพย์/ทรูวอเลท (แก้ตามจริง)</span>
+          </div>
+          <p class="hero-note">
+            *ตัวอย่างหน้าเว็บสำหรับโปรเจ็กต์ทดลอง — ระบบชำระเงินจริงและการส่งโค้ดยังต้องต่อหลังบ้านเพิ่มเติม
+          </p>
+        </div>
+
+        <aside class="hero-card" id="howto">
+          <div>
+            <h3>วิธีสั่งซื้อ (ตัวอย่าง)</h3>
+            <ul>
+              <li>1. เลือกเกมหรือโค้ดที่ต้องการจากรายการด้านล่าง</li>
+              <li>2. กดปุ่ม “ดูรายละเอียด / สั่งซื้อ”</li>
+              <li>3. แคปหน้าจอและทักแชทบอทร้าน / แอดมิน</li>
+              <li>4. โอนเงินตามช่องทางที่แจ้ง + ส่งสลิป</li>
+              <li>5. รอรับโค้ดทางแชทหรือในระบบสมาชิก</li>
+            </ul>
+          </div>
+          <div class="hero-card-footer">
+            ⚠ แนะนำให้เขียนเงื่อนไขของร้านให้ชัดเจน เช่น ไม่รับเคลมถ้าใส่โค้ดผิดเอง,
+            รหัสสำหรับใช้ส่วนตัวเท่านั้นและต้องไม่ผิด TOS ของเกม/แพลตฟอร์ม
+          </div>
+        </aside>
+      </div>
+
+      <!-- PRODUCTS LIST -->
+      <section class="products-panel" id="products">
+        <div class="products-header">
+          <h2>รหัสเกม / โค้ดเติมเกม</h2>
+          <span id="product-count">รายการทั้งหมด: 0 รายการ</span>
+        </div>
+
+        <div class="filters">
+          <input type="text" class="search-input" id="searchInput"
+            placeholder="ค้นหาเกม เช่น GTA, Minecraft, Steam Keys..." />
+          <select id="platformFilter" class="select-input">
+            <option value="">ทุกแพลตฟอร์ม</option>
+            <option value="Steam">Steam</option>
+            <option value="Epic">Epic Games</option>
+            <option value="Xbox">Xbox</option>
+            <option value="PlayStation">PlayStation</option>
+            <option value="Mobile">Mobile</option>
+          </select>
+        </div>
+
+        <div class="tags">
+          <button class="tag active" data-type="">
+            ทั้งหมด
+          </button>
+          <button class="tag" data-type="full">
+            เกมเต็ม (Full Game)
+          </button>
+          <button class="tag" data-type="topup">
+            โค้ดเติมเงิน / Point
+          </button>
+          <button class="tag" data-type="dlc">
+            DLC / Add-on
+          </button>
+        </div>
+
+        <div class="products-list" id="productsList">
+          <!-- รายการเกมจะถูก generate ด้วย JavaScript -->
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="contact">
+        <div>
+          <h3>ติดต่อร้าน / แชทสั่งซื้อ</h3>
+          <p>
+            สามารถปรับตรงนี้เป็น Line OA, Discord, Facebook Page หรือระบบแชทในเว็บตามที่คุณวาเลนทำต่อในหลังบ้าน
+          </p>
+        </div>
+
+        <div class="sidebar-section">
+          <strong>ช่องทางติดต่อ</strong>
+          <div class="contact-row">
+            <span class="contact-pill">LINE: @yourshop</span>
+            <span class="contact-pill">Discord: yourdiscord</span>
+            <span class="contact-pill">Facebook: fb.me/yourshop</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <strong>ประกาศ / เงื่อนไขร้าน</strong>
+          <p>
+            • รหัสทุกอันเป็นของแท้ ใช้งานได้ 1 ครั้งต่อ 1 โค้ด<br />
+            • ลูกค้าต้องใช้รหัสตามเงื่อนไขของแพลตฟอร์ม (ไม่ผิดกฎ/ไม่แชร์ต่อในทางที่ผิด)<br />
+            • แนะนำให้บันทึกหลักฐานการซื้อ/โอนเงินทุกครั้ง
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 GameCode Shop — หน้าเว็บตัวอย่างสำหรับระบบขายรหัสเกม / โค้ดเติมเกม
+  </footer>
+
+  <!-- MODAL รายละเอียดเกม -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">ชื่อเกม</h3>
+        <div class="modal-close" id="modalClose">✕</div>
+      </div>
+      <div class="modal-body">
+        <p id="modalPlatform">แพลตฟอร์ม: -</p>
+        <p id="modalType">ประเภท: -</p>
+        <p id="modalStock">สต็อก: -</p>
+        <p id="modalNote">รายละเอียดเพิ่มเติม: -</p>
+        <small>
+          *ตัวอย่าง: เวลาเชื่อมต่อกับหลังบ้านจริง คุณสามารถดึงรายละเอียดรหัส, ประวัติการซื้อ,
+          ข้อจำกัดของโค้ด ฯลฯ มาแสดงตรงนี้ได้
+        </small>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm secondary" id="modalCopyBtn">
+          คัดลอกชื่อเกม + ราคา
+        </button>
+        <button class="btn-sm" id="modalChatBtn">
+          แชทสั่งซื้อเกมนี้
+        </button>
+      </div>
+    </div>
   </div>
 
-  <script>
-    async function loadMe() {
-      const res = await fetch('/api/me');
-      const data = await res.json();
-      const el = document.getElementById('welcome');
-      if (data.ok && data.user) {
-        el.textContent = 'สวัสดี ' + data.user.username + ' ✅ คุณล็อกอินอยู่';
-      } else {
-        window.location.href = 'login.html';
-      }
-    }
-
-    async function logout() {
-      await fetch('/api/logout', { method: 'POST' });
-      window.location.href = 'login.html';
-    }
-
-    loadMe();
-  </script>
+  <script src="dashboard.js"></script>
 </body>
+
 </html>
